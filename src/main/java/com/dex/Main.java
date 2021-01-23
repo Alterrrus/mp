@@ -9,11 +9,12 @@ import java.util.regex.Pattern;
 
 
 public class Main {
+
   private final static String UNIVERS = ":\"(\\\\.|[^\"\\\\])*\"";
 
-  static String PARSE(String tag,String out){
-    Matcher matcher=Pattern.compile("\""+tag+"\""+UNIVERS, Pattern.UNICODE_CHARACTER_CLASS)
-        .matcher(out);
+  static void PARSE(String tag, String out) {
+    Matcher matcher = Pattern
+        .compile("\"" + tag + "\"" + UNIVERS, Pattern.UNICODE_CHARACTER_CLASS).matcher(out);
     matcher.find();
     String[] s = out.substring(matcher.start(), matcher.end()).split(":");
     if (s[1].length() == 2) {
@@ -21,8 +22,8 @@ public class Main {
     } else {
       System.out.print(s[1].substring(1, s[1].length() - 1) + ",");
     }
-    return "\""+tag+"\""+UNIVERS;
   }
+
   public static void main(String[] args) throws InterruptedException, IOException {
     if (args.length == 0) {
       System.out.println("при запуске программы необходимо ввести параметры.");
@@ -49,16 +50,13 @@ public class Main {
 
     for (int i = start; i <= end; i++) {
       String out = new Scanner(new URL(url + i).openStream(),
-          String.valueOf(StandardCharsets.UTF_8))
-          .useDelimiter("\\A")
-          .next();
-          PARSE("address",out);
-          PARSE("city",out);
-          PARSE("email",out);
-          PARSE("firstName",out);
-          PARSE("lastName",out);
-          PARSE("phone",out);
-
+          String.valueOf(StandardCharsets.UTF_8)).useDelimiter("\\A").next();
+      PARSE("address", out);
+      PARSE("city", out);
+      PARSE("email", out);
+      PARSE("firstName", out);
+      PARSE("lastName", out);
+      PARSE("phone", out);
       System.out.println();
       Thread.sleep(timeout);
     }
