@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-  private final static String UNIVERS = ":\"(\\\\.|[^\"\\\\])*\"";
+  private final static String REGEXP = ":\"(\\\\.|[^\"\\\\])*\"";
 
   static void PARSE(String tag, String out) {
     Matcher matcher = Pattern
-        .compile("\"" + tag + "\"" + UNIVERS, Pattern.UNICODE_CHARACTER_CLASS).matcher(out);
+        .compile("\"" + tag + "\"" + REGEXP, Pattern.UNICODE_CHARACTER_CLASS).matcher(out);
     matcher.find();
     String[] s = out.substring(matcher.start(), matcher.end()).split(":");
     if (s[1].length() == 2) {
