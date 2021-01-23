@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-  private static String regexp = ":\"(\\\\.|[^\"\\\\])*\"";
+  public static String regexp = ":\"(\\\\.|[^\"\\\\])*\"";
   public static final String[] ITEMS = {"address", "city", "email", "firstName", "lastName",
       "phone"};
 
